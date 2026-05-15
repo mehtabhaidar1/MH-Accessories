@@ -30,21 +30,3 @@ RESTful API: Developed a clean API architecture for seamless communication betwe
 
 Schema Design: Optimized MongoDB schemas for fast data retrieval and consistency.
 
-📸 Screenshots
-(Pro-tip: Drag and drop a screenshot of your homepage here to make it look professional!)
-
-⚙️ Installation & Setup
-Clone the repository:
-
-Bash
-git clone https://github.com/mehtabhaidar1/MH-Accessories.git
-Install dependencies for both Frontend and Backend:
-
-Bash
-npm install
-Create a .env file and add your MongoDB URI.
-
-Start the development server:
-
-Bash
-npm start
