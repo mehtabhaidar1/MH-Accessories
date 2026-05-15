@@ -1,0 +1,49 @@
+Unique Features of MH ACCESSORIES Project
+==========================================
+
+1. Hybrid Database & Storage (Supabase Integration)
+---------------------------------------------------
+Unlike simple frontend templates, this project is fully connected to a live backend using Supabase.
+- **Files Involved**: 
+  - `src/utils/supabaseClient.js` (Initialization)
+  - `src/pages/AdminProductForm.jsx` (Data entry & Image Upload)
+  - `src/pages/Products.jsx` (Fetching data)
+  - `src/pages/Checkout.jsx` (Order processing)
+- **Method**: Uses `@supabase/supabase-js`. The project performs real CRUD (Create, Read, Update, Delete) operations. It uniquely handles file uploads for product images directly to Supabase Storage buckets, generating public URLs dynamically.
+
+2. Cash on Delivery (COD) Specialized Checkout
+---------------------------------------------------
+The checkout flow is specifically tailored for the local market preference (COD), removing complexity of payment gateways while maintaining professional order tracking.
+- **Files Involved**: `src/pages/Checkout.jsx`
+- **Method**: 
+  - The `placeOrder` function creates a transaction record in the `orders` table with a 'Pending' status.
+  - It automatically calculates shipping costs based on selection (Standard vs Express) and creates a relational entry in `order_items`.
+  - The UI explicitly highlights COD as the trusted payment method.
+
+3. Admin Real-time Notification System
+---------------------------------------------------
+The Admin panel includes a polling mechanism to alert administrators of new messages or orders without needing to refresh the page.
+- **Files Involved**: `src/components/AdminLayout.jsx`
+- **Method**: 
+  - Uses `setInterval` with `fetchUnread` function running every 5 seconds.
+  - Queries the `contact_messages` table for status='New'.
+  - Displays a dynamic badge count on the sidebar, updating in near real-time.
+
+4. 360-Degree Product View Data Structure
+---------------------------------------------------
+The project is future-proofed for high-end e-commerce features with a ready-made data structure for 360-degree product spins.
+- **Files Involved**: `src/data/products.js`
+- **Method**: 
+  - The `BASE_PRODUCTS` array includes a specialized `images360` field.
+  - It stores an array of image URLs representing different angles (Front, Side, Back, Top) for products like "Canon EOS R50".
+  - *Note*: While the data is ready, the frontend viewer component is the next logical step to implement to fully utilize this feature.
+
+5. Intelligent Image Fallback System
+---------------------------------------------------
+The project uses a smart utility to guess product image paths if the database link is missing, ensuring the UI never looks broken.
+- **Files Involved**: 
+  - `src/utils/images.js`
+  - `src/components/ProductImage.jsx`
+- **Method**: 
+  - `localProductCandidates` function generates multiple potential file paths (checking .webp, .jpg, .png extensions).
+  - It automatically "slugifies" product names (e.g., "Canon EOS R50" -> "canon-eos-r50") to map them to local assets dynamically.
